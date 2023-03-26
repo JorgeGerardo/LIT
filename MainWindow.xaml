@@ -1,0 +1,80 @@
+﻿<Window x:Class="LIT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LIT"
+        mc:Ignorable="d"
+        Title="LIT" Height="500" WindowStartupLocation="CenterScreen" MinHeight="600" MinWidth="1000" Width="1000" Background="Black"  WindowStyle="ThreeDBorderWindow" >
+
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Background="#1e1e1e" Margin="0,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TabControl SelectionChanged="TabMenuPrincipal_SelectionChanged" Name="TabMenuPrincipal">
+                <TabControl.Resources>
+                    <Style TargetType="{x:Type TabControl}">
+                        <Setter Property="Foreground" Value="#EEE" />
+                        <Setter Property="Background" Value="#212121" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="Foreground" Value="#EEE" />
+                        <Setter Property="Background" Value="#1e1e1e" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TabItem}">
+                                    <Border Name="Border"
+                                    Margin="0,0,0,0"
+                                    Background="{TemplateBinding Background}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="#1e1e1e">
+                                        <ContentPresenter x:Name="ContentSite"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"
+                                                  ContentSource="Header"
+                                                  Margin="10,0,10,0"
+                                                  RecognizesAccessKey="True"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#343434"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#333333"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+                <TabItem Cursor="Hand" Header="_Contestar" FontSize="15" Name="TIContestar"></TabItem>
+                <TabItem Cursor="Hand" Height="25" FontSize="15" Header="_Agregar" Name="TIAgregar"></TabItem>
+            </TabControl>
+
+            
+            <Grid Grid.Row="1">
+                <local:UC_AgregarInformacion x:Name="UC_Agregar" Visibility="Collapsed"></local:UC_AgregarInformacion>
+                <local:UC_Contestar x:Name="UC_Contestar" Visibility="Visible"></local:UC_Contestar>
+            </Grid>
+            
+            
+            
+        </Grid>
+    </Grid>
+
+</Window>
